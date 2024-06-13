@@ -1,62 +1,78 @@
 <div class="header">
-<h1>Tier des images</h1>
-<p>C'est une liste d'image et de categorie qui peut etre trie</p>
+    <h1>Tier des images</h1>
+    <p>C'est une liste d'image et de categorie qui peut etre trie</p>
 </div>
 
 <div class="nav">
-    <div>
-        <button class="btn" type="button" (click)="onAjoutElement()">Ajouter un element</button>
-        <input class="input" type="text" placeholder ="image url" [(ngModel)]="urlSaisie">
-        <select class="select" [(ngModel)]="categoryListe">
-            @for (item of categories; track $index){
-            <option [value]="$index">{{ item.nom }}</option>
-            }
-        </select>
+    <div class="nav_group">
+        <div class="nav_item">
+            <input class="input" type="text" placeholder="image url" [(ngModel)]="urlSaisie">
+        </div>
+        <div class="nav_item">
+            <select class="select" [(ngModel)]="categoryListe">
+                @for (item of categories; track $index){
+                <option [value]="$index">{{ item.nom }}</option>
+                }
+            </select>
+        </div>
+        <div class="nav_item">
+            <button class="btn" type="button" (click)="onAjoutElement()">Ajouter un element</button>
+        </div>
     </div>
-    <div>
-        <button class="btn" type="button" (click)="onAjoutCategorie()">Ajouter un Categorie</button>
-        <input class="input" type="text" placeholder ="Nom de categorie " [(ngModel)]="nomCategorieSaisie">
-    </div>
-
-
-    
-    
-    <button class="btn btn-danger " type="button" (click)="resetCategories()">Tout réinitialiser</button>
-</div>
-<br>
-<div>
-@for(categorie of categories; track indexCategorie; let indexCategorie = $index){
-<div class="categorie">
-    <div class="entete" (dblclick)="onDoubleClickCategorie(categorie, $event)"
-    (blur)="onBlurCategorie(categorie)" (keyup)="onKeyupCategorie(categorie, $event)">
-        @if(categorie.estModifi){
-            <input #inputNomCategorie class="inputCategorie" [(ngModel)]="categorie.nom">
-        }@else {
-            <span>{{ categorie.nom }}</span>
-        }
-        @if (categories.length > 1) {
-<div class="bouton btn-danger" (click)="onSupprimerCategorie(categorie, indexCategorie)">X</div>
-        }
+    <div class="nav_group">
+        <div class="nav_item">
+            <input class="input" type="text" placeholder="Nom de categorie " [(ngModel)]="nomCategorieSaisie">
+        </div>
+        <div class="nav_item">
+            <button class="btn" type="button" (click)="onAjoutCategorie()">Ajouter un Categorie</button>
+        </div>
         
     </div>
-    <div class="images" >
 
-        @for(element of categorie.elements; track indexElement; let indexElement = $index){
-            <div class="image" >
-                <div class="bouton btn-danger" (click)="onSupprimerElement(categorie, indexElement)">X</div>
-                <img src="{{ element }}"/>
-                @if (indexCategorie > 0){
-                    <div class="bouton btn-haut" (click)="onchangeCategorie(indexCategorie, indexElement, false)">+</div>
-                }
-                @if (indexCategorie < categories.length - 1){
-                    <div class="bouton btn-bas" (click)="onchangeCategorie(indexCategorie, indexElement, true)">-</div>
-                }
-                
-            </div>
-        }
-    
+    <div class="nav_group">
+<div class="nav_item">
+    <button class="btn btn-danger " type="button" (click)="resetCategories()">Tout réinitialiser</button>
+</div>
     </div>
-    
+
+</div>
+
+<br>
+<div>
+    @for(categorie of categories; track indexCategorie; let indexCategorie = $index){
+    <div class="categorie">
+        <div class="entete" (dblclick)="onDoubleClickCategorie(categorie, $event)" (blur)="onBlurCategorie(categorie)"
+            (keyup)="onKeyupCategorie(categorie, $event)">
+            @if(categorie.estModifi){
+            <input #inputNomCategorie class="inputCategorie" [(ngModel)]="categorie.nom">
+            }@else {
+            <span>{{ categorie.nom }}</span>
+            }
+            @if (categories.length > 1) {
+            <div class="bouton btn-danger" (click)="onSupprimerCategorie(categorie, indexCategorie)">X</div>
+            }
+
+        </div>
+        <div class="images">
+
+            @for(element of categorie.elements; track indexElement; let indexElement = $index){
+            <div class="image">
+                <div class="bouton btn-danger" (click)="onSupprimerElement(categorie, indexElement)">X</div>
+                <img src="{{ element }}" />
+                @if (indexCategorie > 0){
+                <div class="bouton btn-haut" (click)="onchangeCategorie(indexCategorie, indexElement, false)">+
+                </div>
+                }
+                @if (indexCategorie < categories.length - 1){ <div class="bouton btn-bas"
+                    (click)="onchangeCategorie(indexCategorie, indexElement, true)">-
+            </div>
+            }
+
+        </div>
+        }
+
+    </div>
+
 </div>
 }
 </div>

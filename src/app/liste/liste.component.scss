@@ -1,10 +1,30 @@
 .nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.nav_group{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #33333384;
-    padding: 10px;
-    color: white;
+    flex-direction: column;
+    width: 100%;
+}
+.nav_item {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.select,
+.btn {
+    height: 45px;
+    padding: 0 10px;
+    max-width: 100%;
+}
+.input{
+    height: 40px;
+    padding: 0 10px;
 }
 .header{
     text-align: center;
@@ -12,24 +32,22 @@
 .btn {
     background-color: blue;
     color: white;
-    padding: 10px 20px;
     height: 45px;
     cursor: pointer;
     border: none;
-    margin: 0 5px;
+    padding: 10px;
 }
 .inputCategorie{
     width: 100%;
 }
-.select{
-    height: 45px;
-        width: 150px;
-}
 
-.input {
-    height: 40px;
-    width: 300px;
-}
+// .input{
+//     padding: 0px;
+//     margin: 0px;
+//     width: 100%;
+// }
+
+
 
 .categorie {
     display: flex;
@@ -167,3 +185,14 @@
 
 
 }
+
+@media screen and (min-width: 576px){
+
+    .nav_group {
+        flex-direction: row;
+        width: initial;
+    }
+    
+
+}
+    
